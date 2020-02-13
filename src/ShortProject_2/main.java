@@ -1,3 +1,7 @@
+/**
+ * @author txg170003 & dxk180015
+ *
+ */
 package ShortProject_2;
 
 import java.util.Scanner;
