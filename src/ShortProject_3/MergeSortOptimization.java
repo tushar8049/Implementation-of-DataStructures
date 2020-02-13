@@ -16,7 +16,6 @@ public class MergeSortOptimization {
 //        Integer n = 33554432;
 //        Integer n = 67108864;
         Integer n = 134217728;
-//        int choice = 1 + random.nextInt(4);
         int choice = 3;
 
         if (args.length > 0) {
@@ -151,11 +150,11 @@ public class MergeSortOptimization {
             q = p + (r - p)/2;
             mergeSort3(B, A, p, q);
             mergeSort3(B, A, q+1, r);
-            merge3(A, B, p, q, r);
+            optimizedMerge(A, B, p, q, r);
         }
     }
 
-    public static void merge3(int[] A, int[] B, Integer p, Integer q, Integer r) {
+    public static void optimizedMerge(int[] A, int[] B, Integer p, Integer q, Integer r) {
         Integer i = p, k = p, j = q+1;
         while(i <= q && j <= r){
             if(B[i] <= B[j])
@@ -186,25 +185,10 @@ public class MergeSortOptimization {
             q = p + (r - p)/2;
             mergeSort4(B, A, p, q, T);
             mergeSort4(B, A, q+1, r, T);
-            merge4(A, B, p, q, r);
+            optimizedMerge(A, B, p, q, r);
         }
     }
 
-    public static void merge4(int[] A, int[] B, Integer p, Integer q, Integer r) {
-        Integer i = p, k = p, j = q+1;
-        while(i <= q && j <= r){
-            if(B[i] <= B[j])
-                A[k++] = B[i++];
-            else
-                A[k++] = B[j++];
-        }
-        while(i <= q){
-            A[k++] = B[i++];
-        }
-        while(j <= r){
-            A[k++] = B[j++];
-        }
-    }
 
     public static void mergeSort6(int[] A, Integer T) {
         int[] B = new int[A.length];
@@ -218,7 +202,7 @@ public class MergeSortOptimization {
         }
         for(Integer i = T; i < n; i = 2*i){
             for(Integer j = 0; j < n; j = j+2*i){
-                merge6(B, inp, j, j+i-1, j+2*i-1);
+                optimizedMerge(B, inp, j, j+i-1, j+2*i-1);
             }
             int [] t = inp;
             inp = B;
@@ -226,22 +210,6 @@ public class MergeSortOptimization {
         }
         if(A != inp){
             System.arraycopy(inp, 0, A, 0, A.length);
-        }
-    }
-
-    public static void merge6(int[] A, int[] B, Integer p, Integer q, Integer r) {
-        Integer i = p, k = p, j = q+1;
-        while(i <= q && j <= r){
-            if(B[i] <= B[j])
-                A[k++] = B[i++];
-            else
-                A[k++] = B[j++];
-        }
-        while(i <= q){
-            A[k++] = B[i++];
-        }
-        while(j <= r){
-            A[k++] = B[j++];
         }
     }
 
